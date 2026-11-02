@@ -1,0 +1,8 @@
+{
+  "name": "kit-medico-ia",
+  "description": "Kit Médico IA: quatro skills para o consultório médico (anúncio, secretária, orçamento e conteúdo), baseadas na Resolução CFM 2.336/2023.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Samuel Batista"
+  }
+}

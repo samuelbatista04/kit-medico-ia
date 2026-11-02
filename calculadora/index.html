@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quanto custou cada consulta do seu anúncio · Kit Médico IA</title>
+<meta name="description" content="Calculadora do Kit Médico IA: coloque o gasto do anúncio, as conversas no WhatsApp, as consultas marcadas e as atendidas e pagas e veja o custo de cada etapa e o retorno do anúncio. Nada é enviado nem guardado.">
+<meta name="theme-color" content="#023047">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230E5E6F'/%3E%3Cpath d='M13 8h6v5h5v6h-5v5h-6v-5H8v-6h5z' fill='%233CC6B4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Montserrat:wght@600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Montserrat:wght@600;700&display=swap"></noscript>
+<style>
+@font-face{font-family:"Montserrat Fallback";src:local("Arial");ascent-override:84.95%;descent-override:22.03%;line-gap-override:0%;size-adjust:113.39%}
+@font-face{font-family:"Plex Fallback";src:local("Arial");ascent-override:98%;descent-override:26.3%;line-gap-override:0%;size-adjust:104%}
+:root{
+  --profundo:#023047;--petroleo:#0E5E6F;--petroleo-claro:#1F7F8F;--agua:#3CC6B4;--agua-escuro:#0F8A7C;
+  --fundo:#F3F9F9;--sup:#FFFFFF;--linha:#D5E7E8;--texto:#16323C;--texto-2:#4A6670;
+  --alerta:#8A5A12;--alerta-borda:#B7791F;--alerta-fundo:#FFF6E5;
+  --erro:#B42318;--erro-fundo:#FEF3F2;
+  --f-titulo:"Montserrat","Montserrat Fallback",Arial,sans-serif;
+  --f-texto:"IBM Plex Sans","Plex Fallback",Arial,sans-serif;
+  --raio:16px;--raio-btn:12px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fundo);color:var(--texto);font-family:var(--f-texto);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{width:100%;max-width:1040px;margin:0 auto;padding:0 16px}
+header.topo{background:var(--profundo);color:#fff}
+header.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px}
+.marca{font-family:var(--f-titulo);font-weight:700;font-size:15px;letter-spacing:.01em;display:flex;align-items:center;gap:8px}
+.marca svg{flex:none}
+.etq{font-size:13px;color:#CFE3E6}
+.intro{padding:28px 0 8px}
+.intro .olho{font-family:var(--f-titulo);font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--petroleo);margin:0 0 10px}
+h1{font-family:var(--f-titulo);font-weight:700;color:var(--profundo);font-size:clamp(1.65rem,1.2rem + 2.2vw,2.5rem);line-height:1.15;margin:0 0 12px;letter-spacing:-.01em;text-wrap:balance}
+.intro p{margin:0;color:var(--texto-2);max-width:60ch}
+.grade{display:grid;gap:16px;padding:20px 0 8px}
+.cartao{background:var(--sup);border:1px solid var(--linha);border-radius:var(--raio);padding:20px 16px;box-shadow:0 1px 2px rgba(2,48,71,.04),0 8px 24px -12px rgba(2,48,71,.12);min-width:0}
+.cartao h2{font-family:var(--f-titulo);font-weight:600;font-size:1.05rem;color:var(--profundo);margin:0 0 16px}
+.metodo{margin:-8px 0 18px}
+.metodo>p{margin:0 0 10px;font-size:14.5px;color:var(--texto-2);line-height:1.45}
+.metodo>p b{color:var(--texto)}
+.como{border:1px solid var(--linha);border-radius:var(--raio-btn);background:var(--fundo)}
+.como summary{cursor:pointer;padding:11px 14px;font-weight:600;font-size:14.5px;color:var(--petroleo);list-style-position:inside}
+.como summary:focus-visible{outline:3px solid var(--agua);outline-offset:2px;border-radius:var(--raio-btn)}
+.como .corpo{padding:0 14px 12px;font-size:14px;line-height:1.5;color:var(--texto)}
+.como ol{margin:0;padding-left:20px}
+.como li{margin:0 0 8px}
+.como li b{color:var(--profundo)}
+.como .corpo>p{margin:4px 0 0;color:var(--texto-2)}
+.arq{white-space:nowrap;font-weight:500;color:var(--texto)}
+.campo{margin:0 0 18px}
+.campo:last-of-type{margin-bottom:6px}
+label.rot{display:block;font-weight:600;font-size:15px;color:var(--profundo);margin:0 0 6px}
+.opc{font-weight:400;font-size:13.5px;color:var(--texto-2)}
+.entrada{position:relative;display:flex;align-items:center}
+.entrada .pre{position:absolute;left:14px;font-weight:500;color:var(--texto-2);pointer-events:none}
+input[type=text]{width:100%;font:inherit;font-size:17px;color:var(--texto);background:#fff;border:1.5px solid var(--linha);border-radius:var(--raio-btn);padding:12px 14px;min-height:50px;transition:border-color .15s,box-shadow .15s;appearance:none}
+.entrada .pre+input{padding-left:44px}
+input[type=text]:focus{outline:none;border-color:var(--petroleo-claro);box-shadow:0 0 0 3px rgba(60,198,180,.28)}
+input[type=text][aria-invalid=true]{border-color:var(--erro);background:var(--erro-fundo)}
+input[type=text][aria-invalid=true]:focus{box-shadow:0 0 0 3px rgba(180,35,24,.18)}
+input::placeholder{color:#8AA3AA}
+.erro{font-size:13.5px;font-weight:500;color:var(--erro);margin:6px 0 0;line-height:1.45}
+.erro[hidden]{display:none}
+.ajuda{font-size:13.5px;color:var(--texto-2);margin:6px 0 0;line-height:1.45}
+fieldset.origem{border:0;margin:12px 0 0;padding:0;min-width:0}
+fieldset.origem legend{padding:0;margin:0 0 8px;font-weight:600;font-size:14.5px;color:var(--profundo)}
+.marcar{display:flex;gap:10px;align-items:flex-start;margin:0 0 8px;padding:12px;border-radius:var(--raio-btn);background:var(--fundo);border:1px solid var(--linha);cursor:pointer}
+.marcar:last-child{margin-bottom:0}
+.marcar:has(input:checked){border-color:var(--petroleo-claro);background:#E9F6F4}
+.marcar input{flex:none;width:20px;height:20px;margin:1px 0 0;accent-color:var(--petroleo)}
+.marcar span{font-size:14.5px;line-height:1.4}
+.marcar span b{color:var(--profundo)}
+.considerado{font-size:13.5px;color:var(--petroleo);font-weight:500;margin:8px 0 0;min-height:1.45em}
+.considerado b{font-weight:600}
+.acoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+button{font:inherit;cursor:pointer;border-radius:var(--raio-btn);min-height:44px;padding:10px 16px;font-family:var(--f-titulo);font-weight:600;font-size:14px;transition:background-color .15s,border-color .15s,color .15s}
+.btn-sec{background:#fff;color:var(--petroleo);border:1.5px solid var(--linha)}
+.btn-sec:hover{border-color:var(--petroleo-claro)}
+.btn-pri{background:var(--petroleo);color:#fff;border:1.5px solid var(--petroleo)}
+.btn-pri:hover{background:var(--profundo);border-color:var(--profundo)}
+button:focus-visible{outline:3px solid var(--agua);outline-offset:2px}
+.resultados{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.res{display:flex;flex-direction:column;background:var(--fundo);border:1px solid var(--linha);border-radius:12px;padding:14px 12px;min-width:0}
+.res .n{display:block;font-size:13px;color:var(--texto-2);line-height:1.3;margin-bottom:6px}
+.res .v{display:block;margin-top:auto;font-family:var(--f-titulo);font-weight:700;font-size:clamp(1.2rem,1rem + 1vw,1.5rem);color:var(--profundo);line-height:1.15;overflow-wrap:anywhere}
+.res .v.vazio{font-family:var(--f-texto);font-weight:500;font-size:14px;color:var(--texto-2)}
+.res.destaque{grid-column:1 / -1;background:var(--profundo);border-color:var(--profundo)}
+.res.destaque .n{color:#CFE3E6}
+.res.destaque .v{color:#fff;font-size:clamp(1.35rem,1.1rem + 1.2vw,1.8rem)}
+.res.destaque .v.vazio{color:#A9C9CF;font-size:14px}
+.res.destaque .s{display:block;font-size:13.5px;color:#CFE3E6;margin-top:6px}
+.leitura{margin:14px 0 0;padding:14px 14px 14px 16px;border-radius:12px;background:#E9F6F4;border-left:4px solid var(--agua);font-size:15px;line-height:1.5;color:var(--texto)}
+.leitura.atencao{background:var(--alerta-fundo);border-left-color:var(--alerta-borda)}
+.leitura strong{color:var(--profundo)}
+.aviso{margin:14px 0 0;font-size:13.5px;color:var(--texto-2);line-height:1.5}
+.aviso b{color:var(--texto)}
+.privado{display:flex;gap:10px;align-items:flex-start;margin:16px 0 0;padding:12px;border-radius:12px;border:1px dashed var(--linha);font-size:13.5px;color:var(--texto-2)}
+.privado svg{flex:none;margin-top:2px;color:var(--petroleo)}
+footer{padding:28px 0 36px;text-align:center;font-size:13.5px;color:var(--texto-2)}
+footer strong{font-family:var(--f-titulo);font-weight:600;color:var(--profundo)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.lunai{margin:8px 0 0;border-radius:var(--raio);padding:22px 18px;background:linear-gradient(135deg,var(--profundo) 0%,#0A4A5C 100%);color:#E6F2F3;box-shadow:0 18px 40px -24px rgba(2,48,71,.6)}
+.lunai .olho{font-family:var(--f-titulo);font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--agua);margin:0 0 8px}
+.lunai h2{font-family:var(--f-titulo);font-weight:700;font-size:clamp(1.2rem,1rem + 1vw,1.55rem);line-height:1.25;color:#fff;margin:0 0 10px;text-wrap:balance}
+.lunai p{margin:0 0 16px;font-size:15px;line-height:1.55;max-width:68ch}
+.lunai p b{color:#fff}
+.btn-lunai{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;padding:12px 14px;border-radius:var(--raio-btn);background:var(--agua);color:var(--profundo);font-family:var(--f-titulo);font-weight:700;font-size:15px;text-align:center;text-decoration:none;transition:background-color .15s}
+.btn-lunai:hover{background:#56D3C3}
+.btn-lunai:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.lunai .assina{margin:12px 0 0;font-size:13px;color:#A9C9CF}
+@media (min-width:600px){.btn-lunai{width:auto}}
+@media (min-width:860px){
+  .intro{padding:44px 0 8px}
+  .grade{grid-template-columns:1.05fr 1fr;gap:20px;align-items:start;padding-top:24px}
+  .cartao{padding:28px 26px}
+  .lunai{padding:30px 32px;display:grid;grid-template-columns:1fr auto;gap:8px 32px;align-items:center}
+  .lunai .txt{grid-column:1}
+  .lunai .acao{grid-column:2;grid-row:1}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="topo">
+  <div class="wrap">
+    <div class="marca">
+      <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#0E5E6F"/><path d="M13 8h6v5h5v6h-5v5h-6v-5H8v-6h5z" fill="#3CC6B4"/></svg>
+      Kit Médico IA
+    </div>
+    <span class="etq">Calculadora do anúncio</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <p class="olho">Bônus · Caixa de Ferramentas</p>
+    <h1>Quanto custou cada consulta que veio do seu anúncio</h1>
+    <p>Coloque os números de um mesmo anúncio e de um mesmo período, uma semana ou um mês. A conta aparece na hora, enquanto você digita.</p>
+  </section>
+
+  <div class="grade">
+    <form class="cartao" id="calc" data-bloco="form" autocomplete="off" novalidate onsubmit="return false">
+      <h2>Seus números</h2>
+
+      <div class="metodo" data-bloco="metodo">
+        <p><b>Todos os números são do mesmo anúncio e das mesmas datas.</b> Gasto e conversas saem da mesma linha do Gerenciador de Anúncios; consultas marcadas e atendidas, das conversas desse anúncio.</p>
+        <details class="como" id="como">
+          <summary>Como contar cada número</summary>
+          <div class="corpo">
+            <ol>
+              <li><b>Mesmo anúncio, mesmas datas.</b> No Gerenciador, escolha as datas (por exemplo, de 1º a 7) e copie o valor usado e as conversas da mesma linha. Com mais de um anúncio, use o total da campanha ou faça uma conta para cada anúncio, sem misturar.</li>
+              <li><b>Conversas:</b> o número do Gerenciador, como está.</li>
+              <li><b>Consultas marcadas:</b> as conversas desse anúncio, nessas datas, que viraram primeira consulta ou procedimento marcado. Conte uma por conversa, mesmo que nela se marque para mais de uma pessoa. Ficam de fora retorno, paciente que já era do consultório, quem escreveu direto no número (por indicação, Google ou perfil) e a mesma conversa contada duas vezes. Vale por onde a conversa começou: a etiqueta "Anúncio" no WhatsApp Business marca isso.</li>
+              <li><b>Data que vale:</b> a da conversa. Se a conversa foi nessas datas e a consulta foi marcada alguns dias depois, ela entra. Por isso, refaça a conta uma ou duas semanas depois do fim do período.</li>
+              <li><b>Atendidas e pagas:</b> das consultas marcadas, as que já aconteceram e foram pagas. Falta, remarcação e consulta que ainda vai acontecer ficam de fora.</li>
+              <li><b>Imposto da Meta:</b> desde janeiro de 2026, a Meta cobra PIS/Cofins (9,25%) e ISS (2,9%) nos anúncios no Brasil, para conta com nota fiscal em nome de Facebook Serviços Online do Brasil Ltda. Juntos, são 12,15% do total cobrado, o mesmo que R$&nbsp;13,83 a cada R$&nbsp;100 de anúncio. Conferido em novembro de 2026. Se a fatura mostrar outro valor, vale o da fatura.</li>
+            </ol>
+            <p>Para não contar de cabeça, use a planilha de acompanhamento do Bônus, <span class="arq">registro-de-acompanhamento.csv</span>, com uma linha por conversa e um código no lugar do nome do paciente. Consultas marcadas são as linhas do anúncio com estágio "consulta marcada", "atendida e paga", "faltou" ou "remarcou"; atendidas e pagas são as linhas com estágio "atendida e paga".</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="campo" data-bloco="gasto">
+        <label class="rot" for="gasto">Valor gasto no anúncio</label>
+        <div class="entrada"><span class="pre" aria-hidden="true">R$</span><input type="text" id="gasto" inputmode="decimal" placeholder="Ex.: 600,00" aria-describedby="gasto-erro gasto-ajuda"></div>
+        <p class="erro" id="gasto-erro" aria-live="polite" hidden></p>
+        <fieldset class="origem" id="imposto" data-bloco="imposto">
+          <legend>De onde você copiou esse valor?</legend>
+          <label class="marcar" for="origem-gerenciador" data-bloco="imposto-gerenciador">
+            <input type="radio" name="origem" id="origem-gerenciador" value="gerenciador" checked>
+            <span><b>Do Gerenciador de Anúncios</b> (coluna Valor usado). A calculadora soma o imposto da Meta: cerca de R$&nbsp;13,83 a cada R$&nbsp;100.</span>
+          </label>
+          <label class="marcar" for="origem-fatura" data-bloco="imposto-fatura">
+            <input type="radio" name="origem" id="origem-fatura" value="fatura">
+            <span><b>Da fatura ou do que você pagou</b> (recibo, nota fiscal, cartão, Pix ou boleto). O imposto já está dentro e não é somado de novo.</span>
+          </label>
+        </fieldset>
+        <p class="ajuda" id="gasto-ajuda">O Gerenciador mostra o valor sem o imposto: R$&nbsp;1.000,00 usados viram R$&nbsp;1.138,30 na fatura. Na dúvida, use o total da fatura.</p>
+        <p class="considerado" id="considerado" data-bloco="considerado" aria-live="polite"></p>
+      </div>
+
+      <div class="campo" data-bloco="conversas">
+        <label class="rot" for="conversas">Conversas iniciadas no WhatsApp</label>
+        <input type="text" id="conversas" inputmode="numeric" placeholder="Ex.: 50" aria-describedby="conversas-erro conversas-ajuda">
+        <p class="erro" id="conversas-erro" aria-live="polite" hidden></p>
+        <p class="ajuda" id="conversas-ajuda">No Gerenciador de Anúncios, é a coluna Conversas por mensagem iniciadas, nas mesmas datas do valor gasto.</p>
+      </div>
+
+      <div class="campo" data-bloco="consultas">
+        <label class="rot" for="consultas">Consultas marcadas por essas conversas</label>
+        <input type="text" id="consultas" inputmode="numeric" placeholder="Ex.: 10" aria-describedby="consultas-erro consultas-ajuda">
+        <p class="erro" id="consultas-erro" aria-live="polite" hidden></p>
+        <p class="ajuda" id="consultas-ajuda">A Meta não enxerga este número. Conte as conversas do anúncio que viraram consulta ou procedimento marcado, uma por conversa; a etiqueta "Anúncio" no WhatsApp Business ajuda.</p>
+      </div>
+
+      <div class="campo" data-bloco="pagas">
+        <label class="rot" for="pagas">Dessas, quantas foram atendidas e pagas <span class="opc">(opcional)</span></label>
+        <input type="text" id="pagas" inputmode="numeric" placeholder="Ex.: 8" aria-describedby="pagas-erro pagas-ajuda">
+        <p class="erro" id="pagas-erro" aria-live="polite" hidden></p>
+        <p class="ajuda" id="pagas-ajuda">Falta, remarcação e consulta que ainda vai acontecer ficam de fora. Em branco, a conta mostra só a receita possível.</p>
+      </div>
+
+      <div class="campo" data-bloco="ticket">
+        <label class="rot" for="ticket">Valor médio da consulta ou procedimento</label>
+        <div class="entrada"><span class="pre" aria-hidden="true">R$</span><input type="text" id="ticket" inputmode="decimal" placeholder="Ex.: 450,00" aria-describedby="ticket-erro"></div>
+        <p class="erro" id="ticket-erro" aria-live="polite" hidden></p>
+      </div>
+
+      <div class="acoes">
+        <button type="button" class="btn-sec" id="exemplo">Ver um exemplo fictício</button>
+        <button type="button" class="btn-sec" id="limpar">Limpar</button>
+      </div>
+    </form>
+
+    <div class="lado">
+      <section class="cartao" data-bloco="resultado" aria-labelledby="res-titulo">
+        <h2 id="res-titulo">Resultado</h2>
+        <div class="resultados" aria-live="polite">
+          <div class="res" data-bloco="r-conversa"><span class="n">Custo por conversa</span><span class="v vazio" id="r-conversa">aguardando</span></div>
+          <div class="res" data-bloco="r-taxa"><span class="n">Conversas que viraram consulta marcada</span><span class="v vazio" id="r-taxa">aguardando</span></div>
+          <div class="res" data-bloco="r-paciente"><span class="n">Custo por consulta marcada</span><span class="v vazio" id="r-paciente">aguardando</span></div>
+          <div class="res" data-bloco="r-pago"><span class="n">Custo por consulta atendida e paga</span><span class="v vazio" id="r-pago">aguardando</span></div>
+          <div class="res" data-bloco="r-fat"><span class="n">Receita possível das consultas marcadas</span><span class="v vazio" id="r-fat">aguardando</span></div>
+          <div class="res" data-bloco="r-real"><span class="n">Receita das consultas atendidas e pagas</span><span class="v vazio" id="r-real">aguardando</span></div>
+          <div class="res destaque" data-bloco="retorno"><span class="n" id="r-retorno-n">Retorno do anúncio</span><span class="v vazio" id="r-retorno">aguardando os números</span><span class="s" id="r-retorno-s"></span></div>
+        </div>
+        <p class="leitura" id="leitura" data-bloco="leitura" aria-live="polite">Preencha o valor gasto e as conversas para ver quanto custou cada conversa.</p>
+        <p class="aviso" data-bloco="aviso"><b>A conta é uma estimativa.</b> Ela usa só os números que você digitou. Receita não é lucro: dela ainda saem os custos do consultório e os impostos do seu faturamento. Retornos e pacientes que chegaram por indicação ficam fora da conta, e o imposto exato da Meta está na fatura.</p>
+        <p class="privado">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span>A conta é feita na própria página. Nada é enviado a servidor e nada fica guardado: ao fechar ou recarregar, os campos voltam vazios.</span>
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <section class="lunai" data-bloco="lunai" aria-labelledby="lunai-titulo">
+    <div class="txt">
+      <p class="olho">Próximo passo</p>
+      <h2 id="lunai-titulo">Conversa que demora a ser respondida é anúncio desperdiçado</h2>
+      <p><span id="lunai-custo"></span>Quando a resposta demora, o paciente esfria e pode seguir para outro consultório. A <b>LunAi</b>, o sistema de atendimento com agente de IA no WhatsApp para clínicas e consultórios, responde o paciente na hora, a qualquer hora, marca e lembra a consulta e passa para a recepção o que precisa de gente.</p>
+    </div>
+    <div class="acao">
+      <a class="btn-lunai" href="https://lunai.app.br/?utm_source=kit-medico-ia&amp;utm_medium=calculadora&amp;utm_content=resultado" target="_blank" rel="noopener">Agende uma demonstração da LunAi</a>
+      <p class="assina">LunAi, por Samuel Batista</p>
+    </div>
+  </section>
+</main>
+
+<footer><strong>Kit Médico IA</strong> · por Samuel Batista</footer>
+
+<script>
+(function(){
+  // Imposto da Meta no Brasil desde 01/01/2026: PIS/Cofins 9,25% + ISS 2,9% = 12,15% do total cobrado,
+  // para conta faturada pela Facebook Serviços Online do Brasil Ltda. O Gerenciador mostra o valor sem imposto,
+  // então total = valor usado / (1 - 0,1215): R$ 1.000,00 usados = R$ 1.138,30 cobrados; R$ 100,00 = R$ 113,83.
+  // Fonte e data no relatório de fechamento (_REVISAO/2026-11-01/fechamento/calculadora.md).
+  var TAXA = 0.1215;
+  var brl = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
+  var num2 = new Intl.NumberFormat('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+  var pct = new Intl.NumberFormat('pt-BR',{maximumFractionDigits:1});
+  function $(id){return document.getElementById(id);}
+
+  var CAMPOS = {
+    gasto:     {tipo:'dinheiro', positivo:true,  nome:'valor gasto'},
+    conversas: {tipo:'inteiro',  nome:'conversas'},
+    consultas: {tipo:'inteiro',  nome:'consultas marcadas'},
+    pagas:     {tipo:'inteiro',  nome:'atendidas e pagas'},
+    ticket:    {tipo:'dinheiro', positivo:true,  nome:'valor médio'}
+  };
+  var NOMES = ['gasto','conversas','consultas','pagas','ticket'];
+  var el = {};
+  NOMES.forEach(function(n){ el[n] = $(n); el[n+'Erro'] = $(n+'-erro'); });
+  el.fatura = $('origem-fatura'); el.gerenciador = $('origem-gerenciador');
+  el.considerado = $('considerado');
+  el.rConversa = $('r-conversa'); el.rTaxa = $('r-taxa'); el.rPaciente = $('r-paciente'); el.rPago = $('r-pago');
+  el.rFat = $('r-fat'); el.rReal = $('r-real');
+  el.rRetornoN = $('r-retorno-n'); el.rRetorno = $('r-retorno'); el.rRetornoS = $('r-retorno-s');
+  el.leitura = $('leitura'); el.lunaiCusto = $('lunai-custo');
+
+  var mostrarParcial = {}, relogio = {};
+
+  function erro(msg){ return {estado:'erro', msg:msg}; }
+  function parcial(msg){ return {estado:'parcial', msg:msg}; }
+  function temSinal(s){ return /[-\u2212\u2013\u2014+]/.test(s); }
+
+  // Dinheiro no formato brasileiro: 1800 · 1800,5 · 1.800,50 · R$ 1.800,50
+  function lerDinheiro(bruto){
+    var s = String(bruto||'').replace(/R\$/gi,'').replace(/[\s ]/g,'');
+    if(!s) return {estado:'vazio'};
+    if(temSinal(s)) return erro('O valor não pode ser negativo nem ter sinal. Digite só o número, por exemplo 600,00.');
+    if(/[^\d.,]/.test(s)) return erro('Use só números, ponto e vírgula, por exemplo 1.800,50.');
+    if(/^(\d+|\d{1,3}(\.\d{3})+)(,\d{0,2})?$/.test(s)){
+      return {estado:'ok', valor: parseFloat(s.replace(/\./g,'').replace(',','.') || '0')};
+    }
+    if(/^\d{1,3}(,\d{3})+\.\d{1,2}$/.test(s)){
+      var sug = s.replace(/,/g,'#').replace('.',',').replace(/#/g,'.');
+      return erro('Parece o formato americano. Aqui o ponto separa os milhares e a vírgula separa os centavos: escreva ' + sug + '.');
+    }
+    if(/^\d{1,3}(,\d{3})+$/.test(s)){
+      var milhar = s.replace(/,/g,'.');
+      var umaVirgula = s.split(',').length === 2;
+      var centavos = s.replace(/^(\d+),(\d{2})\d$/, '$1,$2');
+      return erro('Depois da vírgula vêm só os centavos, com dois números. Se o valor é R$ ' + milhar + ', escreva ' + milhar + '.' + (umaVirgula ? ' Se é R$ ' + centavos + ', escreva ' + centavos + '.' : ''));
+    }
+    var msgPonto = /^\d+\.\d{1,2}$/.test(s)
+      ? 'Para os centavos, use vírgula: escreva ' + s.replace('.',',') + '.'
+      : 'O ponto separa os milhares de três em três e a vírgula separa os centavos, por exemplo 1.800,50.';
+    if(/^\d{1,3}(\.\d{3})*\.\d{0,2}$/.test(s)) return parcial(msgPonto);
+    return erro(msgPonto);
+  }
+
+  // Quantidade: número inteiro, sem sinal. Aceita 1000 ou 1.000.
+  function lerInteiro(bruto){
+    var s = String(bruto||'').replace(/[\s ]/g,'');
+    if(!s) return {estado:'vazio'};
+    if(temSinal(s)) return erro('Não pode ser negativo nem ter sinal. Digite só o número, por exemplo 50.');
+    if(/[^\d.,]/.test(s)) return erro('Use só números, por exemplo 50.');
+    if(/^(\d+|\d{1,3}(\.\d{3})+)$/.test(s)) return {estado:'ok', valor: parseInt(s.replace(/\./g,''),10)};
+    var m = s.match(/^(\d+)[.,](\d+)$/);
+    var msg = m
+      ? 'Aqui vai um número inteiro, sem casa decimal: conte ' + (+m[1]) + ' ou ' + (+m[1] + 1) + ', não ' + s + '.'
+      : 'Aqui vai um número inteiro, sem vírgula nem casa decimal, por exemplo 50.';
+    if(s.indexOf(',') === -1 && /^\d{1,3}(\.\d{3})*\.\d{0,2}$/.test(s)) return parcial(msg);
+    return erro(msg);
+  }
+
+  function ler(n){
+    var c = CAMPOS[n];
+    var r = c.tipo === 'dinheiro' ? lerDinheiro(el[n].value) : lerInteiro(el[n].value);
+    if(r.estado === 'ok' && c.positivo && !(r.valor > 0)) r = parcial('Coloque um valor maior que zero.');
+    return r;
+  }
+  function ok(x){ return typeof x === 'number' && isFinite(x); }
+  function mostrar(alvo, texto, vazio){ alvo.textContent = texto; alvo.classList.toggle('vazio', !!vazio); }
+  function plural(q, um, varios){ return q === 1 ? um : varios; }
+  function listar(itens){ return itens.length < 2 ? itens.join('') : itens.slice(0,-1).join(', ') + ' e ' + itens[itens.length-1]; }
+
+  function calcular(){
+    var R = {}, comErro = [];
+    NOMES.forEach(function(n){
+      R[n] = ler(n);
+      var visivel = R[n].estado === 'erro' || (R[n].estado === 'parcial' && mostrarParcial[n]);
+      R[n].visivel = visivel;
+      el[n+'Erro'].textContent = visivel ? R[n].msg : '';
+      el[n+'Erro'].hidden = !visivel;
+      if(visivel){ el[n].setAttribute('aria-invalid','true'); comErro.push(CAMPOS[n].nome); }
+      else el[n].removeAttribute('aria-invalid');
+    });
+    function val(n){ return R[n].estado === 'ok' ? R[n].valor : NaN; }
+    function espera(nomes, padrao){
+      for(var i=0;i<nomes.length;i++){ if(R[nomes[i]].visivel) return 'aguardando correção'; }
+      return padrao || 'aguardando';
+    }
+
+    // Total usado na conta: entra uma vez só, com imposto estimado (Gerenciador) ou como está (fatura).
+    var base = val('gasto');
+    var daFatura = el.fatura.checked;
+    var G = ok(base) ? (daFatura ? base : base / (1 - TAXA)) : NaN;
+    if(ok(G)){
+      el.considerado.innerHTML = '';
+      var b = document.createElement('b'); b.textContent = 'Total usado na conta: ' + brl.format(G);
+      el.considerado.appendChild(b);
+      el.considerado.appendChild(document.createTextNode(daFatura
+        ? ', como está na fatura. Nenhum imposto foi somado.'
+        : ' (' + brl.format(base) + ' do Gerenciador mais ' + brl.format(G - base) + ' de imposto estimado).'));
+    } else { el.considerado.textContent = ''; }
+
+    var C = val('conversas'), M = val('consultas'), P = val('pagas'), T = val('ticket');
+    var pagasVazio = R.pagas.estado === 'vazio';
+
+    // Funil: cada consulta marcada é uma conversa do anúncio, e as pagas são parte das marcadas.
+    var semConversa = ok(C) && ok(M) && C === 0 && M > 0;
+    var maisQueConversas = ok(C) && ok(M) && C > 0 && M > C;
+    var maisPagas = ok(M) && ok(P) && P > M;
+    var funilOk = !semConversa && !maisQueConversas;
+    var pagasOk = funilOk && !maisPagas;
+    // Sem um número de conversas válido não dá para conferir o funil: nada que dependa das consultas é mostrado.
+    var funilPronto = ok(C) && funilOk;
+
+    var cConv = (ok(G) && ok(C) && C > 0) ? G / C : NaN;
+    var taxa = (funilPronto && C > 0 && ok(M)) ? M / C * 100 : NaN;
+    var cMarc = (funilPronto && ok(G) && ok(M) && M > 0) ? G / M : NaN;
+    var cPago = (funilPronto && pagasOk && ok(G) && ok(M) && ok(P) && P > 0) ? G / P : NaN;
+    var recPos = (funilPronto && ok(M) && ok(T)) ? M * T : NaN;
+    var recReal = (funilPronto && pagasOk && ok(M) && ok(P) && ok(T)) ? P * T : NaN;
+    var retReal = (ok(G) && ok(recReal)) ? recReal / G : NaN;
+    var retPos = (ok(G) && ok(recPos)) ? recPos / G : NaN;
+
+    ok(cConv) ? mostrar(el.rConversa, brl.format(cConv))
+      : mostrar(el.rConversa, (ok(G) && C === 0) ? 'sem conversa ainda' : espera(['gasto','conversas']), true);
+    ok(taxa) ? mostrar(el.rTaxa, pct.format(taxa) + '%')
+      : mostrar(el.rTaxa, !funilOk ? 'revise os números' : espera(['conversas','consultas']), true);
+    ok(cMarc) ? mostrar(el.rPaciente, brl.format(cMarc))
+      : mostrar(el.rPaciente, !funilOk ? 'revise os números' : (M === 0 ? 'sem consulta ainda' : espera(['gasto','conversas','consultas'])), true);
+    ok(cPago) ? mostrar(el.rPago, brl.format(cPago))
+      : mostrar(el.rPago, !pagasOk ? 'revise os números' : (pagasVazio ? 'preencha as pagas' : (P === 0 ? 'sem consulta paga ainda' : espera(['gasto','conversas','consultas','pagas']))), true);
+    ok(recPos) ? mostrar(el.rFat, brl.format(recPos))
+      : mostrar(el.rFat, !funilOk ? 'revise os números' : espera(['conversas','consultas','ticket']), true);
+    ok(recReal) ? mostrar(el.rReal, brl.format(recReal))
+      : mostrar(el.rReal, !pagasOk ? 'revise os números' : (pagasVazio ? 'preencha as pagas' : espera(['conversas','consultas','pagas','ticket'])), true);
+
+    if(!pagasOk){
+      el.rRetornoN.textContent = 'Retorno do anúncio';
+      mostrar(el.rRetorno, 'revise os números', true); el.rRetornoS.textContent = '';
+    } else if(ok(retReal)){
+      el.rRetornoN.textContent = 'Retorno das consultas atendidas e pagas';
+      mostrar(el.rRetorno, 'cada R$ 1 voltou ' + brl.format(retReal));
+      el.rRetornoS.textContent = brl.format(recReal) + ' de ' + P + ' ' + plural(P,'consulta paga','consultas pagas') + ' para um total de ' + brl.format(G) + ' usado no anúncio.';
+    } else if(pagasVazio && ok(retPos)){
+      el.rRetornoN.textContent = 'Retorno possível';
+      mostrar(el.rRetorno, 'cada R$ 1 pode voltar ' + brl.format(retPos));
+      el.rRetornoS.textContent = brl.format(recPos) + ' se ' + plural(M,'a consulta marcada for atendida e paga','as ' + M + ' consultas marcadas forem atendidas e pagas') + ', para um total de ' + brl.format(G) + ' usado no anúncio.';
+    } else {
+      el.rRetornoN.textContent = 'Retorno do anúncio';
+      mostrar(el.rRetorno, espera(['gasto','conversas','consultas','pagas','ticket'], 'aguardando os números'), true);
+      el.rRetornoS.textContent = '';
+    }
+
+    // Leitura: primeiro os campos com erro, depois a coerência do funil, só então a interpretação.
+    var frase, atencao = false;
+    if(comErro.length){
+      frase = (comErro.length === 1 ? 'Há um número para corrigir no campo ' : 'Há números para corrigir nos campos ') + listar(comErro) + '. A conta que depende ' + (comErro.length === 1 ? 'dele' : 'deles') + ' fica parada até a correção.';
+      atencao = true;
+    } else if(semConversa){
+      frase = 'Os números não fecham: há ' + M + ' ' + plural(M,'consulta marcada','consultas marcadas') + ' e nenhuma conversa. Aqui, toda consulta marcada vem de uma conversa do anúncio. Confira se os números são do mesmo anúncio e das mesmas datas, e se essas consultas não vieram por indicação ou direto no número. Enquanto isso, a página não tira conclusão sobre o anúncio.';
+      atencao = true;
+    } else if(maisQueConversas){
+      frase = 'Os números não fecham: há mais consultas marcadas (' + M + ') do que conversas (' + C + '). Aqui, cada consulta marcada é uma conversa do anúncio que virou consulta, então ela não passa o número de conversas. Confira as datas e a origem: podem ter entrado consultas de outro período, de indicação ou de quem escreveu direto no número. Enquanto isso, a página não tira conclusão sobre o anúncio.';
+      atencao = true;
+    } else if(maisPagas){
+      frase = 'Os números não fecham: há mais consultas atendidas e pagas (' + P + ') do que marcadas (' + M + '). As pagas são parte das marcadas; confira as duas contagens antes de olhar o retorno.';
+      atencao = true;
+    } else if(!ok(G) || !ok(C)){
+      frase = 'Preencha o valor gasto e as conversas para ver quanto custou cada conversa.';
+    } else if(C === 0){
+      frase = 'Nenhuma conversa no período. Se o gasto já passou de dois ou três dias de orçamento sem nenhuma conversa, vale revisar o anúncio.';
+      atencao = true;
+    } else if(!ok(M)){
+      frase = 'Cada conversa custou ' + brl.format(cConv) + '. Agora coloque quantas dessas conversas viraram consulta marcada.';
+    } else if(M === 0){
+      frase = 'Nenhuma conversa virou consulta marcada ainda. Antes de mexer no anúncio, vale reler como as conversas foram respondidas no WhatsApp.';
+      atencao = true;
+    } else if(!ok(T)){
+      frase = 'Cada consulta marcada custou ' + brl.format(cMarc) + (ok(cPago) ? ', e cada consulta atendida e paga, ' + brl.format(cPago) : '') + '. Coloque o valor médio da consulta ou do procedimento para ver a receita.';
+    } else if(pagasVazio){
+      if(retPos < 1){
+        frase = 'Mesmo que ' + plural(M,'a consulta marcada seja atendida e paga','as ' + M + ' consultas marcadas sejam atendidas e pagas') + ', a receita possível (' + brl.format(recPos) + ') fica abaixo do total usado no anúncio (' + brl.format(G) + '). Vale olhar onde as conversas param: na resposta, no valor ou no horário.';
+        atencao = true;
+      } else {
+        frase = 'Se ' + plural(M,'a consulta marcada for atendida e paga','as ' + M + ' consultas marcadas forem atendidas e pagas') + ', cada R$ 1 do anúncio volta ' + brl.format(retPos) + '. Por enquanto é receita possível: quando souber quantas foram atendidas e pagas, preencha esse campo para ver o que voltou de fato.';
+      }
+    } else {
+      var naoPagas = M - P;
+      var antes = naoPagas > 0
+        ? 'Das ' + M + ' consultas marcadas, ' + P + ' ' + plural(P,'foi atendida e paga','foram atendidas e pagas') + ' e ' + naoPagas + ' ainda não (falta, remarcação ou consulta que ainda vai acontecer). '
+        : '';
+      if(P === 0){
+        frase = 'Nenhuma consulta marcada foi atendida e paga ainda. Se elas ainda vão acontecer, refaça a conta depois; se faltaram, vale confirmar a consulta na véspera.';
+        atencao = true;
+      } else if(retReal < 1){
+        frase = antes + 'A receita das consultas pagas (' + brl.format(recReal) + ') ficou abaixo do total usado no anúncio (' + brl.format(G) + '). Isso pode mudar com retornos e procedimentos que vierem depois, mas vale olhar onde as conversas param: na resposta, no valor ou no horário.';
+        atencao = true;
+      } else if(retReal < 3){
+        frase = antes + 'A receita das consultas pagas cobriu o total usado no anúncio: cada R$ 1 voltou ' + brl.format(retReal) + '. Receita não é lucro: dela ainda saem os custos do consultório.';
+      } else {
+        frase = antes + 'Cada R$ 1 do anúncio voltou ' + brl.format(retReal) + ' em consultas pagas. Acompanhe por algumas semanas antes de aumentar o orçamento, porque o resultado varia de um período para outro.';
+      }
+    }
+    el.leitura.textContent = frase;
+    el.leitura.classList.toggle('atencao', atencao);
+    el.lunaiCusto.textContent = ok(cConv) ? 'Cada conversa deste anúncio custou ' + brl.format(cConv) + '. ' : '';
+  }
+
+  function aoDigitar(n){
+    return function(){
+      mostrarParcial[n] = false;
+      clearTimeout(relogio[n]);
+      relogio[n] = setTimeout(function(){ mostrarParcial[n] = true; calcular(); }, 1500);
+      calcular();
+    };
+  }
+  function aoSair(n){
+    return function(){
+      clearTimeout(relogio[n]);
+      mostrarParcial[n] = true;
+      var r = ler(n);
+      if(r.estado === 'ok') el[n].value = CAMPOS[n].tipo === 'dinheiro' ? num2.format(r.valor) : String(r.valor);
+      calcular();
+    };
+  }
+  NOMES.forEach(function(n){
+    el[n].addEventListener('input', aoDigitar(n));
+    el[n].addEventListener('blur', aoSair(n));
+  });
+  el.fatura.addEventListener('change', calcular);
+  el.gerenciador.addEventListener('change', calcular);
+
+  function zerar(){
+    NOMES.forEach(function(n){ el[n].value = ''; clearTimeout(relogio[n]); mostrarParcial[n] = false; });
+    el.gerenciador.checked = true;
+  }
+  $('exemplo').addEventListener('click', function(){
+    zerar();
+    el.gasto.value = '600,00'; el.conversas.value = '50'; el.consultas.value = '10'; el.pagas.value = '8'; el.ticket.value = '450,00';
+    calcular();
+  });
+  $('limpar').addEventListener('click', function(){ zerar(); calcular(); el.gasto.focus(); });
+  window.addEventListener('pageshow', function(){ zerar(); calcular(); });
+  calcular();
+})();
+</script>
+</body>
+</html>

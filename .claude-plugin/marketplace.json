@@ -1,0 +1,14 @@
+{
+  "name": "kit-medico-ia",
+  "description": "Kit Médico IA: skills prontas para médicos anunciarem, atenderem e fecharem pacientes, dentro da Resolução CFM 2.336/2023.",
+  "owner": {
+    "name": "Samuel Batista"
+  },
+  "plugins": [
+    {
+      "name": "kit-medico-ia",
+      "source": "./plugins/kit-medico-ia",
+      "description": "Kit Médico IA: Anúncio do Médico, Secretária do Consultório, Orçamento do Paciente e Conteúdo do Médico."
+    }
+  ]
+}
