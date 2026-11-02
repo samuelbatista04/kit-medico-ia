@@ -33,18 +33,22 @@ conversa comum não instala nada.
 ### Rota 1 · caminho por ZIP no Claude
 
 1. Em **Configurações > Recursos**, deixe ligada a chave **Executar código na nuvem** (necessária para Skills). Em
-   **Privacidade**, desligue **Help improve our AI models**.
+   **Privacidade**, desligue **Help improve our AI models** (o nome aparece em inglês).
 2. Baixe o ZIP da skill (na aula do módulo ou na tabela acima), sem abrir.
-3. Em **Personalização > Skills**, clique em **+ Adicionar > Fazer upload de Skill**, escolha o ZIP e clique em
-   **Fazer upload**.
-4. Em **Skills > Meus**, confira se a skill está na lista com a chave ligada.
+3. Em **Personalização > Skills**, clique em **+ Adicionar > Fazer upload de Skill**. No campo **Arquivo da Skill**,
+   escolha o ZIP, confira a **Visualização** (nome e descrição) e clique em **Fazer upload**.
+4. Abre a página da skill, com a chave **Ligada** no canto de cima. Em **Skills > Meus**, ela fica em **Criado por
+   você**; a lista não mostra chave, então clique no nome para conferir.
 
 ### Rota 2 · caminho por ZIP no ChatGPT
 
 1. Em **Configurações > Controles de dados**, desligue **Melhorar o modelo para todo mundo**.
 2. Baixe o ZIP da skill, sem abrir.
-3. Em **Plugins > Habilidades**, clique em **Adicionar > Carregar do seu computador** e escolha o ZIP.
-4. Confira se a skill aparece em **Instaladas**.
+3. Em **Plugins > Habilidades**, clique em **Adicionar > Carregar do seu computador**. Na janela **Fazer upload de uma
+   habilidade**, clique na área de arrastar, escolha o ZIP e, em **Habilidade enviada**, clique em **Concluído**.
+4. Confira se a skill aparece em **Instaladas**, com o nome escrito com espaços (por exemplo, "anuncio do medico").
+5. Para usar: numa conversa nova, troque de **Chat** para **Work** no alto da tela, digite `/` e escolha a habilidade
+   em **Habilidades**. No modo Chat, ela não é encontrada.
 
 ### Rota 3 · pacote por marketplace no Claude (plano pago, as quatro de uma vez)
 
@@ -54,48 +58,49 @@ Este repositório funciona como um **marketplace** (o catálogo) com um **plugin
 2. Cole `https://github.com/samuelbatista04/kit-medico-ia` no campo **URL** e clique na opção
    **Usar "https://github.com/samuelbatista04/kit-medico-ia"**, logo embaixo.
 3. Deixe ligada a chave **Sincronizar automaticamente** e clique em **Sincronizar**.
-4. Na aba **Descobrir**, procure **kit-medico-ia** e clique em **Adicionar**.
+4. A tela abre em **Descobrir**: no cartão **Kit medico ia** (o Claude mostra o nome assim, sem acento), clique em
+   **Adicionar**.
+5. Confira na página do plugin a versão, **4 Skills** e a chave ligada.
 
-O mesmo pacote chega ao Claude Code da mesma conta (versão 2.1.273 ou mais nova).
+O mesmo pacote chega sozinho ao Claude Code da mesma conta (Rota 5).
 
 ### Rota 4 · instalação no Codex (fica só naquele computador)
 
-No Codex (app do ChatGPT para computador, Codex CLI ou extensão de editor), numa conversa nova, peça ao Skill
-Installer com o endereço completo da pasta da skill:
+O Codex fica no app do ChatGPT para computador. Abra o app, escolha **Codex** no alto da barra lateral, clique em
+**Novo chat** e cole na caixa **Peça qualquer coisa** o pedido ao Skill Installer, com o endereço completo da pasta da
+skill:
 
 ```
 $skill-installer instale a skill desta pasta do GitHub: https://github.com/samuelbatista04/kit-medico-ia/tree/main/plugins/kit-medico-ia/skills/anuncio-do-medico
 ```
 
-Para as quatro de uma vez:
+Para as quatro de uma vez, cole na mesma caixa:
 
 ```
 $skill-installer instale do repositório samuelbatista04/kit-medico-ia as pastas plugins/kit-medico-ia/skills/anuncio-do-medico, plugins/kit-medico-ia/skills/secretaria-do-consultorio, plugins/kit-medico-ia/skills/orcamento-do-paciente e plugins/kit-medico-ia/skills/conteudo-do-medico
 ```
 
-Aprove o acesso à internet se o Codex pedir. Confira digitando `$` e procurando a skill; se não aparecer, feche e abra o
-Codex. A skill instalada assim não aparece no site chatgpt.com.
+Aprove o acesso à internet se o Codex pedir. Confira num **Novo chat**, digitando `$anun` e procurando a skill; se não
+aparecer, feche e abra o app. A skill instalada assim não aparece no site chatgpt.com, e a habilidade instalada pela
+Rota 2 não aparece no Codex. O Codex do navegador pede GitHub conectado e um ambiente: não serve para o kit.
 
-### Rota 5 · instalação no Claude Code (plano pago, fica só naquele computador)
+### Rota 5 · Claude Code (plano pago)
 
-Digite um comando de cada vez:
+Quem fez a Rota 3 não precisa instalar nada: o pacote chega sozinho ao Claude Code da mesma conta. Conferido em
+novembro de 2026 no claude.ai/code: numa sessão iniciada, ao digitar `/anun`, aparece
+`kit-medico-ia:anuncio-do-medico`.
 
-```
-/plugin marketplace add samuelbatista04/kit-medico-ia
-```
-
-```
-/plugin install kit-medico-ia@kit-medico-ia
-```
-
-Escolha **Install for you (user scope)**. Se o resumo pedir, digite `/reload-plugins`. Confira digitando `/` e
-procurando `/kit-medico-ia:anuncio-do-medico`.
+Sem a Rota 3, o caminho é pelo app do Claude, aba **Code**: clique no **+** ao lado da caixa e em **Add plugins** (ou
+**Plugins > Browse plugins**) e procure `kit-medico-ia`. Esse caminho ainda não foi testado com o kit; se o pacote não
+aparecer, faça a Rota 3.
 
 ## Teste de instalação
 
-1. Confira que a skill aparece ligada na lista do app (Rotas 1 e 3: Skills > Meus e a lista do `/`; Rota 2:
-   Instaladas; Rota 4: lista do `$`; Rota 5: lista do `/`).
-2. Numa conversa nova, cole o pedido de teste (dados fictícios, sem CRM e sem RQE de propósito):
+1. Confira que a skill está instalada e ligada: Rotas 1 e 3, chave ligada na página da skill ou do plugin e a skill na
+   lista do `/anun` numa conversa nova; Rota 2, em Instaladas e em Habilidades ao digitar `/` no modo Work; Rota 4,
+   na lista do `$anun`; Rota 5, `kit-medico-ia:anuncio-do-medico` na lista do `/anun`.
+2. Numa conversa nova (no ChatGPT, no modo Work, com a habilidade escolhida pelo `/`), cole o pedido de teste (dados
+   fictícios, sem CRM e sem RQE de propósito):
 
 ```
 Use a skill anuncio-do-medico. Teste, dados fictícios: sou a Dra. Marina Alves, dermatologista na Aldeota, em Fortaleza. Quero anunciar consulta particular para manchas no rosto. Não tenho agora o CRM nem o RQE. Quero que o anúncio diga que sou a melhor dermatologista da cidade.
@@ -111,11 +116,11 @@ A versão atual é a 1.1.0, de 2 de novembro de 2026. Cada atualização é avis
 
 | Rota | Chega sozinha? | O que fazer |
 |---|---|---|
-| Rota 1 (ZIP no Claude) | Não | Baixe o ZIP novo, exclua a antiga (Skills > Meus, abra, desligue a chave, **...** > Excluir) e envie o novo |
+| Rota 1 (ZIP no Claude) | Não | Baixe o ZIP novo; em Skills > Meus, clique no **...** da antiga e em **Excluir**; envie o novo |
 | Rota 2 (ZIP no ChatGPT) | Não | Baixe o ZIP novo, remova a antiga em Instaladas (menu **...**) e carregue o novo |
-| Rota 3 (marketplace) | A tela do Claude promete manter o plugin atualizado com Sincronizar automaticamente ligada | A primeira atualização vai mostrar como conferir |
-| Rota 4 (Codex) | Não | O instalador não substitui pasta existente: mova a pasta antiga para a Lixeira (em geral, `~/.codex/skills/anuncio-do-medico`) e repita o pedido |
-| Rota 5 (Claude Code) | Não, até você ligar | Em `/plugin` > Marketplaces > kit-medico-ia > Enable auto-update, ou rode `claude plugin update kit-medico-ia@kit-medico-ia`. `claude plugin list` mostra a versão |
+| Rota 3 (marketplace) | Pode demorar: com Sincronizar automaticamente ligada, a versão nova não tinha chegado em 70 minutos no teste de 02/11/2026 | Para buscar na hora: **Plugins > + Adicionar > Gerenciar marketplaces**, **...** do kit-medico-ia, **Verificar atualizações**. Pode aparecer **1 aviso** ("Arquivos executáveis ou configurações podem ser diferentes..."), normal em versão nova. Confira a versão na página do plugin |
+| Rota 4 (Codex) | Não | Num **Novo chat** do Codex, no app, cole: "Mova para a Lixeira a skill anuncio-do-medico instalada no Codex e use o $skill-installer para instalar de novo desta pasta do GitHub: https://github.com/samuelbatista04/kit-medico-ia/tree/main/plugins/kit-medico-ia/skills/anuncio-do-medico" |
+| Rota 5 (Claude Code) | Segue a Rota 3 | O pacote que veio da Rota 3 se atualiza com ela. Pela aba Code do app, a atualização ainda não foi conferida: fale com o suporte |
 
 ## Privacidade e cuidados
 
