@@ -107,7 +107,7 @@ do WhatsApp e conferência. A conferência é checagem da IA, não selo nem apro
 
 ## Atualizações
 
-A versão atual é a 1.0, de novembro de 2026. Cada atualização é avisada na aula da skill, com data e o que mudou.
+A versão atual é a 1.1.0, de 2 de novembro de 2026. Cada atualização é avisada na aula da skill, com data e o que mudou.
 
 | Rota | Chega sozinha? | O que fazer |
 |---|---|---|
